@@ -39,6 +39,7 @@ function Card({pokemonNumber, setPokemonNumber}) {
                 <p>Loading...</p>
             )}
         </div>
+        
     );
 }
 

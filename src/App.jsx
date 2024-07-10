@@ -90,7 +90,7 @@ const background = getLinearGradient(type)
       <div className="ml-20">
       <button onClick={next}><MdKeyboardDoubleArrowRight className="size-14"/></button>
     </div>
-    <div className="absolute bottom-20">
+    <div className="absolute bottom-14">
     <h1 className="text-gray-700 font-medium">Tap to flip</h1>
     </div>
     </div>
