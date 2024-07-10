@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+.card{
+    animation: float 3s ease-in-out infinite;
+}
+
+.card-container{
+    perspective: 2000px;
+}
+
+.card-custom{
+    position: relative;
+    transition: transform 0.8s ease;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    
+}
+
+ 
+.card-custom .flipped {
+    
+    transform: rotateY(180deg)
+     }
+
+    
+.flipped  {
+        transform: rotateY(180deg);
+    }
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+
+
+     
+@keyframes float {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        transform: translateY(-15px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        transform: translateY(0);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+}
