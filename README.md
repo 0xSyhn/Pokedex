@@ -38,4 +38,4 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 To start the development server, run:
 ```sh
-npm start
+npm run dev
