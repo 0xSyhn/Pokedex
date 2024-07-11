@@ -5,7 +5,11 @@
 @tailwind utilities;
 
 
-
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
 
 .card{
     animation: float 3s ease-in-out infinite;

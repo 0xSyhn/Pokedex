@@ -18,54 +18,63 @@ function CardBack({pokemonNumber}) {
       },[pokemonNumber]);
 
     return (
-        <div className={`bg-green-300 m-24 max-h-svh w-80 p-7 rounded-3xl 
+        <div className={`bg-green-300 m-0 max-h-svh md:w-80 w-64   p-7 rounded-3xl 
         transform transition duration-300 hover:scale-105 card cursor-pointer ${fade?'fade':''}`} style={{backgroundColor:cardColor}}>
             {id ? (
                 <div>
                     <div className='flex items-center justify-center '>
                         <img src={image} alt={name}/>
                     </div>
-                    <div className='p-1 font-sans font-medium text-left'>
+                    <div className='p-1 font-sans font-medium text-left '>
                         <p className='font-bold'>Base Stats:</p>
                         <ul>
-                        <div className='text-left' >
-                            <li className='flex text-sm m-1'>
-                                <span className='w-full'>HP:</span> 
-                                <div className='w-full ml-3'>
-                                   <div style={progressBar(stat.hp)} className='items-center' ></div>
+                        <div className=' grid grid-cols-2 text-[0.7rem] md:text-[0.9rem]'>
+                            <p className='whitespace-nowrap'>Hp:</p>
+                            <div className='place-self-start justify-center '  style={progressBar(stat.hp)}/>
+                        
+                            <p className='whitespace-nowrap'>Attack:</p>
+                            <div className='place-self-start justify-center'  style={progressBar(stat.attack)}/>
+                        
+                            <p className='whitespace-nowrap '>Defence:</p>
+                            <div className='place-self-start justify-center '  style={progressBar(stat.defense)}/>
+                        
+                            <p className='whitespace-nowrap'>Special Attack:</p>
+                            <div className='place-self-start justify-center'  style={progressBar(stat.specialAttack)}/>
+                        
+                            <p className='whitespace-nowrap'>Special Defence:</p>
+                            <div className='place-self-start justify-center'  style={progressBar(stat.specialDefense)}/>
+                        
+                            <p className='whitespace-nowrap'>Speed:</p>
+                            <div className='place-self-start justify-center'  style={progressBar(stat.speed)}/>
+                        
+                          
+                        </div>
+                        {/* <div className='text-left text-nowrap grid-cols-2 grid bg-red-600' >
+                                <span className='w-full block'>HP:</span> 
+                                <div className='w-full ml-3 place-self-start'>
+                                   <div className="bg-red-300 w-2/3 h-8 "   ></div>
                                 </div>
-                            </li>
-                            <li className='flex text-sm m-1'>
-                                <span className='w-full'>Attack:</span>
-                                <div className='w-full ml-3'>
-                                   <div style={progressBar(stat.attack)} ></div>
+                                <span className='w-full block'>Attack:</span>
+                                <div className='w-full ml-3 place-self-start'>
+                                   <div className="bg-red-300 w-2/3 h-8 "  ></div>
                                 </div>
-                            </li>
-                            <li className='flex text-sm m-1'>
-                                <span className='w-full'>Defense:</span>
-                                <div className='w-full ml-3'>
-                                <div style={progressBar(stat.defense)}></div>
+                                <span className='w-full block'>Defense:</span>
+                                <div className='w-full ml-3 place-self-start'>
+                                <div className="bg-red-300 w-2/3 h-8 " ></div>
                                 </div>
-                            </li>
-                            <li className='flex text-sm m-1'>
-                                <span className='w-full'>Special Attack:</span>
-                                <div className='w-full ml-3 '> 
-                                <div style={progressBar(stat.specialAttack)} ></div>
+                                <span className='w-full block'>Special Attack:</span>
+                                <div className='w-full ml-3 place-self-start'> 
+                                <div className="bg-red-300 w-2/3 h-8 "  ></div>
                                 </div>
-                            </li>
-                            <li className='flex text-sm m-1'>
-                            <span className='w-full'>Special Defense:</span>
-                                <div className='w-full ml-3'>
-                                <div style={progressBar(stat.specialDefense)} ></div>
+                            <span className='w-full block'>Special Defense:</span>
+                                <div className='w-full ml-3 place-self-start'>
+                                <div className="bg-red-300 w-2/3 h-8 "  ></div>
                                 </div>
-                            </li>
-                            <li className='flex text-sm m-1'>
-                            <span className='w-full'>Speed:</span>
-                                <div className='w-full ml-3'>
-                                <div style={progressBar(stat.speed)} ></div>
+                            <span className='w-full block'>Speed:</span>
+                                <div className='w-full ml-3 place-self-start'>
+                                <div className="bg-red-300 w-2/3 h-8 "  ></div>
                                 </div>
-                            </li>
-                            </div>
+                            </div> */}
                         </ul>
                     </div>
                 </div>

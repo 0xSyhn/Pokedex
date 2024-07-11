@@ -61,18 +61,22 @@ const App = () => {
 };
 
 const background = getLinearGradient(type)
+
+
  
   return (
-    <>  
-    <div className=" relative flex justify-center items-center h-screen" style={{background: background}}>
-    <div className="absolute top-4 left-32 w-20">
+     
+    <div className=" relative flex justify-center items-center h-screen w-screen flex-col" style={{background: background}}>
+    <div className=" absolute top-4 left-32 w-20">
       <Logo/>
     </div>
-    <div className="absolute top-4 right-56 w-20">
+    <div className=" absolute md:top-4 top-16 right-1/2 md:right-56 translate-x-1/2">
     <Search pokemonNumber={pokemonNumber} setPokemonNumber={setPokemonNumber} />
     </div>
-    <div className="mr-20">
+    <div className={`flex ${pokemonNumber == 1? "justify-end" : "justify-between"} md:w-[50%] w-screen absolute`}>
+    
     {pokemonNumber == 1 ? "":<button onClick={prev}><MdKeyboardDoubleArrowLeft className="size-14"/></button>}
+    <button onClick={next}><MdKeyboardDoubleArrowRight className="size-14"/></button>
     </div>
       <div className="card-container" onClick={toggleFlip}>
         <div className={`card-custom ${isFlipped ? 'flipped' : ''}`}>
@@ -87,14 +91,12 @@ const background = getLinearGradient(type)
           )}
         </div>
       </div>
-      <div className="ml-20">
-      <button onClick={next}><MdKeyboardDoubleArrowRight className="size-14"/></button>
-    </div>
+    
     <div className="absolute bottom-14">
     <h1 className="text-gray-700 font-medium">Tap to flip</h1>
     </div>
     </div>
-    </>
+  
   );
 }
 
