@@ -5,6 +5,7 @@ import Search from "./components/Search";
 import usePokeData from "./hooks/usePokeData";
 import { useState } from 'react'
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { elements } from "./components/utils";
 
 
 
@@ -29,26 +30,7 @@ const App = () => {
   }
   
   const getLinearGradient = (types) => {
-    const elements = {
-        normal: "#A8A77A",
-        fire: "#EE8130",
-        water: "#6390F0",
-        electric: "#F7D02C",
-        grass: "#7AC74C",
-        ice: "#96D9D6",
-        fighting: "#C22E28",
-        poison: "#A33EA1",
-        ground: "#E2BF65",
-        flying: "#A98FF3",
-        psychic: "#F95587",
-        bug: "#A6B91A",
-        rock: "#B6A136",
-        ghost: "#735797",
-        dragon: "#6F35FC",
-        dark: "#705746",
-        steel: "#B7B7CE",
-        fairy: "#D685AD"
-    };
+    
 
     if (types.length === 1) {
         return`linear-gradient(80deg, ${elements[types[0].toLowerCase()]}, #fff)`
@@ -67,16 +49,16 @@ const background = getLinearGradient(type)
   return (
      
     <div className=" relative flex justify-center items-center h-screen w-screen flex-col" style={{background: background}}>
-    <div className=" absolute top-4 left-32 w-20">
+    <div className=" absolute top-4 md:left-32 md:right-auto right-1/2 translate-x-1/2">
       <Logo/>
     </div>
     <div className=" absolute md:top-4 top-16 right-1/2 md:right-56 translate-x-1/2">
     <Search pokemonNumber={pokemonNumber} setPokemonNumber={setPokemonNumber} />
     </div>
-    <div className={`flex ${pokemonNumber == 1? "justify-end" : "justify-between"} md:w-[50%] w-screen absolute`}>
+    <div className={`flex ${pokemonNumber == 1? "justify-end" : "justify-between"} md:w-[50%] w-screen absolute p-3`}>
     
-    {pokemonNumber == 1 ? "":<button onClick={prev}><MdKeyboardDoubleArrowLeft className="size-14"/></button>}
-    <button onClick={next}><MdKeyboardDoubleArrowRight className="size-14"/></button>
+    {pokemonNumber == 1 ? "":<button onClick={prev}><MdKeyboardDoubleArrowLeft className="md:size-14 size-7"/></button>}
+    <button onClick={next}><MdKeyboardDoubleArrowRight className="md:size-14 size-7"/></button>
     </div>
       <div className="card-container" onClick={toggleFlip}>
         <div className={`card-custom ${isFlipped ? 'flipped' : ''}`}>
