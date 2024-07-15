@@ -49,37 +49,11 @@ function CardBack({pokemonNumber}) {
                         
                           
                         </div>
-                        {/* <div className='text-left text-nowrap grid-cols-2 grid bg-red-600' >
-                                <span className='w-full block'>HP:</span> 
-                                <div className='w-full ml-3 place-self-start'>
-                                   <div className="bg-red-300 w-2/3 h-8 "   ></div>
-                                </div>
-                                <span className='w-full block'>Attack:</span>
-                                <div className='w-full ml-3 place-self-start'>
-                                   <div className="bg-red-300 w-2/3 h-8 "  ></div>
-                                </div>
-                                <span className='w-full block'>Defense:</span>
-                                <div className='w-full ml-3 place-self-start'>
-                                <div className="bg-red-300 w-2/3 h-8 " ></div>
-                                </div>
-                                <span className='w-full block'>Special Attack:</span>
-                                <div className='w-full ml-3 place-self-start'> 
-                                <div className="bg-red-300 w-2/3 h-8 "  ></div>
-                                </div>
-                            <span className='w-full block'>Special Defense:</span>
-                                <div className='w-full ml-3 place-self-start'>
-                                <div className="bg-red-300 w-2/3 h-8 "  ></div>
-                                </div>
-                            <span className='w-full block'>Speed:</span>
-                                <div className='w-full ml-3 place-self-start'>
-                                <div className="bg-red-300 w-2/3 h-8 "  ></div>
-                                </div>
-                            </div> */}
                         </ul>
                     </div>
                 </div>
             ) : (
-                <p>Loading...</p>
+                <div className='spinner translate-x-1/2'></div>
             )}
         </div>
     );

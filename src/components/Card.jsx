@@ -23,7 +23,7 @@ function Card({pokemonNumber, setPokemonNumber}) {
     return (
         <div className={`bg-green-300 m-0  max-h-svh md:w-80 w-64 p-6 rounded-3xl 
         transform transition duration-300 hover:scale-105 card cursor-pointer ${fade?'fade':''}`} style={{backgroundColor:cardColor}}>
-
+        
             {id ? (
                 <div>
                     <div className='flex items-center justify-center '>
@@ -36,7 +36,7 @@ function Card({pokemonNumber, setPokemonNumber}) {
                     </div>
                 </div>
             ) : (
-                <p>Loading...</p>
+                <div className='spinner '></div>
             )}
         </div>
         

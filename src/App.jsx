@@ -3,7 +3,7 @@ import CardBack from "./components/CardBack";
 import Logo from "./components/Logo";
 import Search from "./components/Search";
 import usePokeData from "./hooks/usePokeData";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { elements } from "./components/utils";
 
@@ -14,19 +14,28 @@ const App = () => {
 
   const [pokemonNumber, setPokemonNumber] = useState(1);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const{type} = usePokeData(pokemonNumber)
+  const{id,type} = usePokeData(pokemonNumber)
 
   const toggleFlip = () => {
     setIsFlipped(!isFlipped)
   }
 
+  const handleNavigation = (newNumber) => {
+    setIsLoading(true);
+    setPokemonNumber(newNumber);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }
+
   const prev = () =>{
-    setPokemonNumber(pokemonNumber-1)
+    handleNavigation(pokemonNumber-1)
   }
 
   const next = ()=>{
-    setPokemonNumber(pokemonNumber+1)
+    handleNavigation(pokemonNumber+1)
   }
   
   const getLinearGradient = (types) => {
@@ -44,7 +53,9 @@ const App = () => {
 
 const background = getLinearGradient(type)
 
-
+useEffect(()=>{
+  setIsFlipped(false);
+},[pokemonNumber]);
  
   return (
      
@@ -60,7 +71,9 @@ const background = getLinearGradient(type)
     {pokemonNumber == 1 ? "":<button onClick={prev}><MdKeyboardDoubleArrowLeft className="md:size-14 size-7"/></button>}
     <button onClick={next}><MdKeyboardDoubleArrowRight className="md:size-14 size-7"/></button>
     </div>
-      <div className="card-container" onClick={toggleFlip}>
+    {isLoading ? (
+        <div className='spinner translate-x-1/2'></div>
+      ) : (<div className="card-container" onClick={toggleFlip}>
         <div className={`card-custom ${isFlipped ? 'flipped' : ''}`}>
           {isFlipped ? (
             <div className="card-custom card-back">
@@ -72,8 +85,8 @@ const background = getLinearGradient(type)
             </div>
           )}
         </div>
-      </div>
-    
+      </div>)
+      }
     <div className="absolute bottom-14">
     <h1 className="text-gray-700 font-medium">Tap to flip</h1>
     </div>

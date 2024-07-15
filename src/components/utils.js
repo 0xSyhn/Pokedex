@@ -20,7 +20,7 @@ export const elements = {
   };
 
   export const progressBar = (value) => ({
-    width :`${value}%`,
+    width :`${(value/255)*100}%`,
     backgroundColor : 'blue',
     height:'10px',
     borderRadius:'5px'
