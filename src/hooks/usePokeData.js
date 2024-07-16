@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+
 function usePokeData(number) {
     const [id, setId] = useState("")
     const [name, setName] = useState("")

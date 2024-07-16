@@ -53,7 +53,7 @@ function CardBack({pokemonNumber}) {
                     </div>
                 </div>
             ) : (
-                <div className='spinner translate-x-1/2'></div>
+                <div className='spinner '></div>
             )}
         </div>
     );
