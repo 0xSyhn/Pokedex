@@ -1,3 +1,5 @@
+import debounce from 'lodash.debounce';
+
 export const elements = {
     normal: "#A8A77A",
     fire: "#EE8130",
@@ -26,4 +28,8 @@ export const elements = {
     borderRadius:'5px'
 
 })
+
+export const debounceFunction = (func, wait) => {
+  return debounce(func, wait);
+};
 

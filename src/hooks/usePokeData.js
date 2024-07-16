@@ -1,81 +1,43 @@
-import { useEffect, useState } from 'react'
+import {useQuery} from '@tanstack/react-query'
+import { useState } from 'react';
 
 function usePokeData(number) {
-    const [id, setId] = useState("")
-    const [name, setName] = useState("")
-    const [type, setType] = useState([])
-    const [ability, setAbility] = useState([])
-    const [image, setImage] = useState();
-    const [stat, setStat] = useState({
-        hp: 0,
-        attack: 0,
-        defense: 0,
-        specialAttack: 0,
-        specialDefense: 0,
-        speed: 0
-    });
-    const [color, setColor] = useState("")
+    const [loadImage, setLoadImage] = useState(true)
+
+    const fetchAPI = async (pokemonNumber) => {
+         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`);
+         if(!response.ok){
+            throw new Error("Failed to fetch data");
+         }
+         return response.json();
+    };
+
+    const{data, error, isLoading, isError} = useQuery({
+        queryKey: ['pokemon', number],
+        queryFn: () => fetchAPI(number),
+        enabled: !!number,
+        staleTime:5*60*1000,
+        cacheTime:60*60*1000
+    })
+
+    const fetchedData = data ? {
+        id: data.id,
+        name: data.name,
+        type: data.types.map(t => t.type.name),
+        ability: data.abilities.map(a => a.ability.name),
+        image: data.sprites?.other?.dream_world?.front_default,
+        stat:{
+            hp: data.stats.find(s => s.stat.name === 'hp')?.base_stat || 0,
+            attack: data.stats.find(s => s.stat.name === 'attack')?.base_stat || 0,
+            defense: data.stats.find(s => s.stat.name === 'defense')?.base_stat || 0,
+            specialAttack: data.stats.find(s => s.stat.name === 'special-attack')?.base_stat || 0,
+            specialDefense: data.stats.find(s => s.stat.name === 'special-defense')?.base_stat || 0,
+            speed: data.stats.find(s => s.stat.name === 'speed')?.base_stat || 0,
+        },
+        color: data.types[0].type.name,
+    } : null
     
-
-   
-
-    useEffect(()=>{
-        const fetchAPI = async () =>{
-            try{
-                let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${number}`)
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-                response = await response.json();
-                setId(response.id)
-                setName(response.name)
-                setType(response.types.map(t => t.type.name))
-                setAbility(response.abilities.map(a => a.ability.name))
-                setImage(response.sprites.other.dream_world.front_default)
-                
-                const baseStats = {};
-                response.stats.forEach(stat =>{
-                    baseStats[stat.stat.name] = stat.base_stat;
-                })
-
-                setStat({
-                    hp : baseStats['hp'],
-                    attack: baseStats['attack'],
-                    defense: baseStats['defense'],
-                    specialAttack: baseStats['special-attack'],
-                    specialDefense: baseStats['special-defense'],
-                    speed: baseStats['speed']
-
-                })
-                setColor(response.types[0].type.name)
-                
-            }
-            catch(error){
-                console.error('Error fetching data:', error);
-                setId(null);
-                setName("Error");
-                setType([]);
-                setAbility([]);
-                setImage('');
-                setStat({
-                    hp: 0,
-                    attack: 0,
-                    defense: 0,
-                    specialAttack: 0,
-                    specialDefense: 0,
-                    speed: 0
-                });
-                setColor('')
-            }
-        }   
-        if (number) {
-            fetchAPI();
-        }
-     
-    },[number])
-
-    return { id, name, type, ability,image, stat,color };
- 
-}
+    return{ ...fetchedData, isLoading, isError, error, loadImage, setLoadImage}
+} 
 
 export default usePokeData

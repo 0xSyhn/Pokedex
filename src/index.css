@@ -24,6 +24,7 @@
     transition: transform 0.8s ease;
     transform-style: preserve-3d;
     backface-visibility: hidden;
+    max-height: fit-content;
     
 }
 
@@ -51,6 +52,45 @@
     animation: spin 1s ease infinite;
     margin: auto;
   }
+
+  /* SkeletonLoader.css */
+
+.skeleton {
+    width: 200px;
+    height: 200px;
+    background-color: transparent;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -150px;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(to right, rgba(198, 189, 189, 0) 0%, rgba(212, 212, 212, 0.8) 50%, rgba(198, 189, 189, 0) 100%);
+    animation: shimmer 2s infinite;
+}
+
+
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(500px);
+    }
+    100% {
+        transform: translateX(500px);
+    }
+}
+
+
 
 
   @keyframes spin {
