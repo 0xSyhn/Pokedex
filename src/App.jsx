@@ -60,7 +60,7 @@ const AppContent = () => {
       <div className="absolute top-4 md:left-32 md:right-auto right-1/2 translate-x-1/2">
         <Logo/>
       </div>
-      <div className="absolute md:top-4 top-16 right-1/2 md:right-56 translate-x-1/2">
+      <div className="absolute md:top-4 top-16 right-1/2 md:right-56 translate-x-1/2 z-50">
         <Search pokemonNumber={pokemonNumber} setPokemonNumber={setPokemonNumber} />
       </div>
       <div className={`flex ${pokemonNumber == 1? "justify-end" : "justify-between"} md:w-[50%] w-screen absolute p-3`}>

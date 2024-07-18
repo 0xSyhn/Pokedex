@@ -38,7 +38,7 @@ function Card({pokemonNumber, setPokemonNumber}) {
     }
 
     return (
-        <div className={`m-0  max-h-svh md:w-80 w-64 p-6 rounded-3xl 
+        <div className={`m-0 z-0 relative  max-h-svh md:w-80 w-64 p-6 rounded-3xl 
         transform transition duration-300 hover:scale-105 card cursor-pointer ${fade?'fade':''}`} style={{backgroundColor:cardColor}}>
         
             {id ? (
