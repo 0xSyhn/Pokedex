@@ -2,14 +2,33 @@ import { useEffect, useState } from 'react';
 import usePokeData from '../hooks/usePokeData';
 import { elements } from './utils';
 import SkeletonLoader from './SkeletonLoader';
+import { PiSpeakerSimpleHighFill } from "react-icons/pi";
+import { PiSpeakerSimpleSlashFill } from "react-icons/pi";
+
 
 function Card({pokemonNumber, setPokemonNumber}) {
     
-    const { id, name, type, ability, image, isLoading, isError, loadImage, setLoadImage } = usePokeData(pokemonNumber);
+    const { id, name, type, ability, image,cry, isLoading, isError, loadImage, setLoadImage } = usePokeData(pokemonNumber);
     const [fade, setFade] = useState(false);
+    const [speakerIsActive, setSpeakerIsActive] = useState(false)
 
     const capitalize = (string) =>{
       return string.charAt(0).toUpperCase()+string.slice(1);
+    }
+
+    const handleSpeakerClick = (e) => {
+        e.stopPropagation();
+        if(!speakerIsActive){
+            const audio = new Audio(cry);
+            audio.onplay = () =>{
+                setSpeakerIsActive(true)
+            }
+            audio.onended = () => {
+                setSpeakerIsActive(false)
+            }
+            audio.play().catch(error => console.error("Error playing the audio: ",error));
+            
+        }
     }
     
     const cardColor = type.length>0? elements[type[0].toLowerCase()]:"#A8A77A";
@@ -43,6 +62,15 @@ function Card({pokemonNumber, setPokemonNumber}) {
         
             {id ? (
                 <div>
+                    <div className='absolute right-2'>
+                    {speakerIsActive? <PiSpeakerSimpleHighFill 
+                    className='w-20'
+                    onClick={handleSpeakerClick}
+                     /> : <PiSpeakerSimpleSlashFill 
+                     className='w-20'
+                     onClick={handleSpeakerClick} 
+                     />}
+                    </div>
                     <div className='flex items-center justify-center h-auto aspect-[1] '>
                     {loadImage && <SkeletonLoader/> }
                         <img

@@ -5,7 +5,7 @@ function Search({ pokemonNumber, setPokemonNumber }) {
     const [searchQuery, setSearchQuery] = useState("");
     const [text, setText] = useState("Search");
     const [suggestions, setSuggestions] = useState([]);
-    const { data: allPokemon, isLoading, isError } = useAllPokemon();
+    const { data: allPokemon, isError } = useAllPokemon();
 
     useEffect(() => {
         if (searchQuery && allPokemon) {
@@ -58,8 +58,7 @@ function Search({ pokemonNumber, setPokemonNumber }) {
         setSuggestions([]);
     }
 
-    if (isLoading) return <div>Loading...</div>;
-    if (isError) return <div>Error loading Pokémon data</div>;
+    if (isError) return <div>Error loading Pokemon data</div>;
 
     return (
         <div className="relative z-[1000]">

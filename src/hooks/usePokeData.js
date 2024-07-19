@@ -35,6 +35,7 @@ function usePokeData(number) {
             speed: data.stats.find(s => s.stat.name === 'speed')?.base_stat || 0,
         },
         color: data.types[0].type.name,
+        cry: data.cries.latest,
     } : null
     
     return{ ...fetchedData, isLoading, isError, error, loadImage, setLoadImage}
