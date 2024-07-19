@@ -80,7 +80,7 @@ function Search({ pokemonNumber, setPokemonNumber }) {
                     {suggestions.map(pokemon => (
                         <li 
                             key={pokemon.id} 
-                            className="px-4 py-2 hover:border hover:shadow-md cursor-pointer flex justify-between items-center"
+                            className="px-4 py-2 hover:shadow-sm hover:shadow-black cursor-pointer flex justify-between items-center"
                             onClick={() => handleSuggestionClick(pokemon)}
                         >
                             {pokemon.name}
