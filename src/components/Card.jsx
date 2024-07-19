@@ -62,7 +62,7 @@ function Card({pokemonNumber, setPokemonNumber}) {
         
             {id ? (
                 <div>
-                    <div className='absolute right-2'>
+                    <div className='absolute right-0'>
                     {speakerIsActive? <PiSpeakerSimpleHighFill 
                     className='w-20'
                     onClick={handleSpeakerClick}
