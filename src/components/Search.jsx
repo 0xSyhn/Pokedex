@@ -61,7 +61,7 @@ function Search({ pokemonNumber, setPokemonNumber }) {
     if (isError) return <div>Error loading Pokemon data</div>;
 
     return (
-        <div className="relative z-[1000]">
+        <div className="relative z-[1000] flex flex-col items-center">
             <form onSubmit={handleSearch} className='flex'>
                 <input
                     type="text"
@@ -76,7 +76,7 @@ function Search({ pokemonNumber, setPokemonNumber }) {
                 />
             </form>
             {suggestions.length > 0 && (
-                <ul className="absolute z-10 w-80 backdrop-blur-lg bg-white/5 border shadow-lg border-black rounded-md mt-1 ">
+                <ul className="z-10 w-72 backdrop-blur-lg bg-white/5 border shadow-lg border-black rounded-md mt-1 ">
                     {suggestions.map(pokemon => (
                         <li 
                             key={pokemon.id} 
